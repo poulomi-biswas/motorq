@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Administrator View</title>
+</head>
+<body>
+  <h1>Administrator Dashboard</h1>
+  <h2>Create New Workflow</h2>
+  <form id="workflowForm">
+    <label for="workflowName">Workflow Name:</label>
+    <input type="text" id="workflowName" required><br>
+    <label for="approvers">Approvers (comma-separated usernames):</label>
+    <input type="text" id="approvers" required><br>
+    <label for="approvalType">Approval Type:</label>
+    <select id="approvalType" required>
+      <option value="everyone">Everyone should approve</option>
+      <option value="atLeastTwo">At least two should approve</option>
+      <option value="anyone">Anyone can approve</option>
+    </select><br>
+    <button type="submit">Create Workflow</button>
+  </form>
+
+  <h2>Dashboard</h2>
+  <p>Total Pending Workflows: <span id="totalPending"></span></p>
+  <p>Total Approved (Today/This Week/This Month): <span id="totalApproved"></span></p>
+  <p>Total Rejected (Today/This Week/This Month): <span id="totalRejected"></span></p>
+
+  <script src="script.js"></script>
+  
+
+
+</body>
+</html>
