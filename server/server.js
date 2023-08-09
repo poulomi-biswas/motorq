@@ -17,6 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  const filePath = path.join(__dirname, "public", "land.html");
+  res.sendFile(filePath);
+});
+
 // API endpoint to get all requests (Admin view)
 app.get("/adminRequests", async (req, res) => {
   try {
@@ -66,10 +71,7 @@ app.listen(PORT, () => {
 // app.use(express.static("public")); 
 
 
-// app.get("/", (req, res) => {
-//   const filePath = path.join(__dirname, "public", "land.html");
-//   res.sendFile(filePath);
-// });
+
 
 // app.post("/createWorkflow", (req, res) => {
 //   const { workflowName, approvers, approvalType } = req.body;
