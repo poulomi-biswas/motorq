@@ -29,7 +29,6 @@ app.get("/dashboardStatistics", async (req, res) => {
 
     const snapshot = await approvalHistoryRef.once("value");
     const approvalHistory = snapshot.val();
-
     const totalPending = Object.values(approvalHistory).filter((entry) => entry.status === "pending").length;
     const totalApproved = Object.values(approvalHistory).filter((entry) => entry.status === "approved").length;
     const totalRejected = Object.values(approvalHistory).filter((entry) => entry.status === "rejected").length;

@@ -34,18 +34,44 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch and update dashboard statistics
     async function updateDashboard() {
       try {
-        const response = await fetch("/dashboardStatistics");
-        const data = await response.json();
+        // const response = await fetch("/dashboardStatistics");
+        fetch("/dashboardStatistics")
+        .then((response) => response.json())
+        .then((data) => {
+        
   
         totalPending.textContent = data.totalPending;
         totalApproved.textContent = data.totalApproved;
         totalRejected.textContent = data.totalRejected;
+      }) 
       } catch (error) {
-        console.error("An error occurred:", error);
+        console.error("Error fetching dashboard statistics:", error);
       }
     }
-  
-    // Update dashboard on page load
-    updateDashboard();
+
+    //   .catch( (error) => {
+    //     console.error("An error occurred:", error);
+    //   });
+    //   updateDashboard();
+    // }
   });
+    
+
+// fetch("/dashboardStatistics")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     // Update the UI with the dashboard statistics
+
+//     totalPending.textContent = data.totalPending;
+//     totalApproved.textContent = data.totalApproved;
+//     totalRejected.textContent = data.totalRejected;
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching dashboard statistics:", error);
+//   });
+
+  
+//     // Update dashboard on page load
+//     updateDashboard();
+//   });
   

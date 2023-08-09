@@ -112,7 +112,7 @@ rejectButton.addEventListener("click", async () => {
 
 async function updateRequestStatus(status) {
   try {
-    const response = await fetch(`/approveRejectRequest/${currentRequestId}`, {
+    const response = await fetch(`/approveRejectRequest/:requestID`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
