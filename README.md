@@ -18,3 +18,12 @@ Requester View: http://localhost:3000/requester.html
 Approver View: http://localhost:3000/approver.html
 
 
+![image](https://github.com/poulomi-biswas/motorq/assets/94776150/ae3d6bd1-5790-4e72-90df-6952b178e7db)
+![image](https://github.com/poulomi-biswas/motorq/assets/94776150/5e64b0a6-bfd8-466c-85a7-77e447b764bb)
+![image](https://github.com/poulomi-biswas/motorq/assets/94776150/bdef2bc0-f3d2-4ed0-970d-c8e6fbee698d)
+
+
+
+
+
+
