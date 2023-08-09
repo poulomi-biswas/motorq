@@ -3,6 +3,7 @@ const requestsList = document.getElementById("requestsList");
 
 const database = firebase.database();
 const requestsRef = database.ref("requests"); 
+const workflowsRef = database.ref("workflows");
 
 requestForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -11,7 +12,6 @@ requestForm.addEventListener("submit", async (e) => {
   const workflowType = formData.get("workflowType");
   const description = formData.get("description");
   const attachments = formData.get("attachments");
-
   const newRequestRef = requestsRef.push(); 
   const newRequestId = newRequestRef.key;
 
@@ -32,6 +32,25 @@ requestForm.addEventListener("submit", async (e) => {
     });
 });
 
+async function createWorkflow() {
+  const workflowName = document.getElementById("workflowName").value;
+  const approvers = document.getElementById("approvers").value.split(",");
+  const approvalType = document.getElementById("approvalType").value;
+
+  await workflowsRef.push({
+    workflowName,
+    approvers,
+    approvalType
+  });
+  alert("Workflow created successfully.");
+}
+
+requestForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  createWorkflow();
+});
+
+
 async function fetchRequests() {
   requestsList.innerHTML = "";
 
@@ -44,5 +63,6 @@ async function fetchRequests() {
     });
   });
 }
+
 
 fetchRequests();

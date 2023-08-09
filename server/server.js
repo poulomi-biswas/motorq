@@ -68,6 +68,26 @@ app.get("/pendingRequests", async (req, res) => {
   }
 });
 
+app.post("/createWorkflow", async (req, res) => {
+  try {
+    const { workflowName, approvers, approvalType } = req.body;
+
+    const db = admin.database();
+    const workflowsRef = db.ref("workflows"); // Create a reference to the "workflows" node
+    await workflowsRef.push({
+      workflowName,
+      approvers,
+      approvalType
+    });
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error creating workflow:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 // API endpoint to approve or reject a request (Approver view)
 app.post("/approveRejectRequest/:requestId", async (req, res) => {
   try {
@@ -76,7 +96,7 @@ app.post("/approveRejectRequest/:requestId", async (req, res) => {
 
     const db = admin.database();
     const requestRef = db.ref(`requests/${requestId}`);
-    await requestRef.update({ status });
+    await requestRef.update({ indexOn: status });
 
     res.sendStatus(200);
   } catch (error) {
