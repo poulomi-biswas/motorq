@@ -1,0 +1,52 @@
+<!-- requester.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requester View</title>
+</head>
+<body>
+  <h1>Requester View</h1>
+  <form id="requestForm">
+    <label for="workflowType">Workflow Type:</label>
+    <input type="text" id="workflowType" name="workflowType" required><br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required></textarea><br>
+    <label for="attachments">Attachments:</label>
+    <input type="file" id="attachments" name="attachments"><br>
+    <button type="submit">Submit Request</button>
+  </form>
+  <h2>Your Requests</h2>
+  <ul id="requestsList"></ul>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+  <script>
+
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDvHW4ALZ2U-_HQM1B3umf0EQOd1Ul4qzU",
+  authDomain: "motorq-4a9c0.firebaseapp.com",
+  databaseURL: "https://motorq-4a9c0-default-rtdb.firebaseio.com",
+  projectId: "motorq-4a9c0",
+  storageBucket: "motorq-4a9c0.appspot.com",
+  messagingSenderId: "401067856702",
+  appId: "1:401067856702:web:c4e45434472fcecfea126f",
+  measurementId: "G-W4F7P7GJ72"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</script>
+  <script src="requester.js"></script>
+</body>
+</html>
