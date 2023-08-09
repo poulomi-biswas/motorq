@@ -37,6 +37,8 @@ Approver View: http://localhost:3000/approver.html
 
 ![image](https://github.com/poulomi-biswas/motorq/assets/94776150/bdef2bc0-f3d2-4ed0-970d-c8e6fbee698d)
 
+video link: https://drive.google.com/file/d/1kor8O_vV5XPlhyPdU3lOQTsqfPhxHjWg/view?usp=sharing
+
 
 
 
