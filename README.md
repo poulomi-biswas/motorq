@@ -1,6 +1,8 @@
 # motorq
 Workflow Management System is a web application that allows users to submit and manage approval requests efficiently. The application Admin view Requester View and Approver View.
+
 Getting Started
+
 Prerequisites
 Node.js and npm installed on your machine
 Firebase project set up (with Realtime Database)
