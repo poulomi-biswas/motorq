@@ -2,7 +2,7 @@ const requestForm = document.getElementById("requestForm");
 const requestsList = document.getElementById("requestsList");
 
 const database = firebase.database();
-const requestsRef = database.ref("requests"); // Create a reference to the "requests" node
+const requestsRef = database.ref("requests"); 
 
 requestForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -12,7 +12,7 @@ requestForm.addEventListener("submit", async (e) => {
   const description = formData.get("description");
   const attachments = formData.get("attachments");
 
-  const newRequestRef = requestsRef.push(); // Generate a new unique key for the request
+  const newRequestRef = requestsRef.push(); 
   const newRequestId = newRequestRef.key;
 
   const request = {

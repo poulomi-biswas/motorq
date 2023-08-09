@@ -4,14 +4,12 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-
 var serviceAccount = require("C:/Users/PRADIP/Downloads/AE/motorq-4a9c0-firebase-adminsdk-1kh8y-08687f2c26.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://motorq-4a9c0-default-rtdb.firebaseio.com"
 });
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,7 +20,27 @@ app.get("/", (req, res) => {
   res.sendFile(filePath);
 });
 
-// API endpoint to get all requests (Admin view)
+
+
+app.get("/dashboardStatistics", async (req, res) => {
+  try {
+    const db = admin.database();
+    const approvalHistoryRef = db.ref("approvalHistory");
+
+    const snapshot = await approvalHistoryRef.once("value");
+    const approvalHistory = snapshot.val();
+
+    const totalPending = Object.values(approvalHistory).filter((entry) => entry.status === "pending").length;
+    const totalApproved = Object.values(approvalHistory).filter((entry) => entry.status === "approved").length;
+    const totalRejected = Object.values(approvalHistory).filter((entry) => entry.status === "rejected").length;
+
+    res.json({ totalPending, totalApproved, totalRejected });
+  } catch (error) {
+    console.error("Error fetching dashboard statistics:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/adminRequests", async (req, res) => {
   try {
     const db = admin.database();
@@ -32,6 +50,20 @@ app.get("/adminRequests", async (req, res) => {
     res.json(requests);
   } catch (error) {
     console.error("Error fetching requests:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// API endpoint to get pending requests for the approver
+app.get("/pendingRequests", async (req, res) => {
+  try {
+    const db = admin.database();
+    const requestsRef = db.ref("requests");
+    const snapshot = await requestsRef.orderByChild("status").equalTo("pending").once("value");
+    const pendingRequests = snapshot.val();
+    res.json(pendingRequests);
+  } catch (error) {
+    console.error("Error fetching pending requests:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -56,6 +88,7 @@ app.post("/approveRejectRequest/:requestId", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 
